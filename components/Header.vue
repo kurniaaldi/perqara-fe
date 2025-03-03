@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import SearchInput from "./SearchInput.vue";
-
 export default {
   name: "Header",
   //   props: {
