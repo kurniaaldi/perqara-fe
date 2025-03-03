@@ -1,3 +1,9 @@
 <template>
-  <div class="h-100 bg-black w-full">Hello home</div>
+  <div class="h-screen bg-background w-full">
+    <Header />
+  </div>
 </template>
+
+<script>
+import Header from "~/components/Header.vue";
+</script>
