@@ -11,7 +11,7 @@
       </div>
 
       <div class="h-20 bg-black bg-opacity-50 w-full"></div>
-      <div class="bg-white w-full h-full px-32 pb-14 pt-32">
+      <div class="bg-white w-full h-full px-32 pb-14 pt-36 space-y-4">
         <p class="text-red-600">REVIEWS</p>
         <div class="grid grid-cols-2 gap-4 w-full">
           <CardReview />

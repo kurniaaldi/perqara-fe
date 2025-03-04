@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-gray-900 text-white px-32 py-3 flex items-center justify-between"
+    class="bg-white bg-opacity-5 text-white px-32 py-3 flex items-center justify-between"
   >
     <div class="flex items-center space-x-2">
       <NuxtLink to="/" class="hover:text-red-500 transition">
