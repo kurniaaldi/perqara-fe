@@ -4,10 +4,12 @@
     <MovieCarousel />
 
     <MovieList :movies="movies" />
+    <FooterSection />
   </div>
 </template>
 
 <script setup>
+import FooterSection from "~/components/FooterSection.vue";
 import Header from "~/components/Header.vue";
 import MovieCarousel from "~/components/MovieCarousel.vue";
 import MovieList from "~/components/MovieList.vue";
