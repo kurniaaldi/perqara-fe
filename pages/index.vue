@@ -1,16 +1,11 @@
 <template>
-  <div class="min-h-screen h-full bg-background w-full">
-    <Header></Header>
+  <NuxtLayout>
     <MovieCarousel />
-
     <MovieList :movies="movies" />
-    <FooterSection />
-  </div>
+  </NuxtLayout>
 </template>
 
 <script setup>
-import FooterSection from "~/components/FooterSection.vue";
-import Header from "~/components/Header.vue";
 import MovieCarousel from "~/components/MovieCarousel.vue";
 import MovieList from "~/components/MovieList.vue";
 

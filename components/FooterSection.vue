@@ -9,7 +9,7 @@
         <img
           src="../assets/icons/logo_light.svg"
           alt="MoovieTime Logo"
-          class="h-5"
+          class="w-20 h-full"
         />
       </div>
 
