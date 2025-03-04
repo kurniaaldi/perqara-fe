@@ -1,1 +1,0 @@
-<template>Hello Detail</template>
