@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+      class="grid mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
     >
       <div
         v-for="(movie, index) in movies"
@@ -22,17 +22,17 @@
         class="relative group w-56"
       >
         <img
-          src="../assets/images/movie_image.png"
+          :src="imgUrl + movie.poster_path"
           :alt="movie.title"
           class="w-full h-80 object-cover rounded-lg shadow-lg transition-transform transform group-hover:scale-105"
         />
         <div
           class="absolute top-0 right-0 bg-gray-900 bg-opacity-80 text-white text-lg font-semibold px-2.5 py-1.5"
         >
-          {{ movie.rating }}
+          {{ movie.vote_average }}
         </div>
         <h3 class="text-white font-semibold mt-2 text-sm">{{ movie.title }}</h3>
-        <p class="text-gray-400 text-xs">{{ movie.year }}</p>
+        <p class="text-gray-400 text-xs">{{ movie.release_date }}</p>
 
         <div
           class="absolute inset-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-opacity duration-300"
@@ -59,8 +59,11 @@
 
 <script setup>
 import { defineProps } from "vue";
+const config = useRuntimeConfig();
 
-defineProps({
+const imgUrl = config.public.imgUrl;
+
+const props = defineProps({
   movies: Array,
 });
 </script>

@@ -1,59 +1,16 @@
 <template>
   <NuxtLayout>
     <MovieCarousel />
-    <MovieList :movies="movies" />
+    <MovieList :movies="response?.results" />
   </NuxtLayout>
 </template>
 
 <script setup>
 import MovieCarousel from "~/components/MovieCarousel.vue";
 import MovieList from "~/components/MovieList.vue";
+import { useFetchAuth } from "~/composable/useFetchAuth";
 
-const movies = [
-  {
-    title: "News of the World",
-    rating: "7.2",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "A Texan traveling across the wild West bringing the news of the world to local townspeople...",
-    image: "/images/movie_image.png",
-  },
-  {
-    title: "Space Sweepers",
-    rating: "7.3",
-    year: "2021",
-    genre: "Sci-Fi",
-    description:
-      "When the crew of a space junk collector ship discovers a humanoid robot known to be a weapon...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-];
+const response = await useFetchAuth(
+  "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+);
 </script>
