@@ -3,7 +3,9 @@
     class="bg-gray-900 text-white px-32 py-3 flex items-center justify-between"
   >
     <div class="flex items-center space-x-2">
-      <img src="@/assets/images/logo.png" alt="Logo" class="w-28 h-8" />
+      <NuxtLink to="/" class="hover:text-red-500 transition">
+        <img src="@/assets/images/logo.png" alt="Logo" class="w-28 h-8" />
+      </NuxtLink>
     </div>
 
     <div class="relative w-full max-w-md">
