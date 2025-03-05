@@ -1,11 +1,15 @@
 <template>
-  <div class="w-full p-8 relative">
+  <div class="container mx-auto w-full p-8 pb-0 relative">
     <swiper
       :slidesPerView="3"
       :spaceBetween="30"
+      :loop="true"
       :autoplay="{
         delay: 5000,
         disableOnInteraction: false,
+      }"
+      :pagination="{
+        clickable: true,
       }"
       :modules="[Autoplay, Pagination]"
       class="mySwiper"
@@ -13,12 +17,12 @@
       <swiper-slide v-for="(movie, index) in movies.slice(0, 5)" :key="index">
         <div
           @click="router.push(`/movie/${movie.id}`)"
-          class="overflow-hidden w-[541px] h-[364px] flex cursor-pointer"
+          class="overflow-hidden w-full h-[364px] flex cursor-pointer"
         >
           <img
             :src="imgUrl + movie.poster_path"
-            :alt="movies.name"
-            class="h-full w-60 object-cover"
+            :alt="movie.name"
+            class="h-full w-40 object-cover"
           />
 
           <div class="p-4 bg-gray-900 my-5 w-full text-left overflow-hidden">
@@ -39,24 +43,15 @@
         </div>
       </swiper-slide>
     </swiper>
-    <div
-      class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2"
-    >
-      <span
-        v-for="(movie, index) in movies.slice(0, 5)"
-        :key="index"
-        @click="currentIndex = index"
-        class="w-3 h-3 rounded-full cursor-pointer"
-        :class="currentIndex === index ? 'bg-red-500 w-8' : 'bg-gray-500'"
-      ></span>
-    </div>
   </div>
 </template>
 
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import "swiper/css/pagination"; // Import CSS pagination
 import { Autoplay, Pagination } from "swiper/modules";
+
 const config = useRuntimeConfig();
 const router = useRouter();
 
@@ -71,14 +66,13 @@ const props = defineProps({
 .swiper {
   width: 100%;
   height: 100%;
+  padding-bottom: 4rem;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: transparent;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,5 +83,20 @@ const props = defineProps({
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+:deep(.swiper-pagination-bullet) {
+  background: gray;
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  background: red;
+  width: 24px;
+  height: 10px;
+  opacity: 1;
+  border-radius: 12px;
 }
 </style>

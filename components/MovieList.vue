@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto my-6 relative">
+  <div class="container mx-auto my-6 relative py-4">
     <div
       class="bg-white bg-opacity-5 h-80 absolute w-full top-0"
       :style="{
