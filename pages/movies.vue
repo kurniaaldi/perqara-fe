@@ -8,12 +8,12 @@
         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
       >
         <div>
-          <SidebarFilter />
+          <SidebarFilter :genres="resGenre?.genres" />
         </div>
         <div
           class="col-span-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         >
-          <MoviesCard :movies="movies" />
+          <MoviesCard :movies="resMovie?.results" />
           <div class="col-span-4 flex items-center justify-center w-full">
             <button
               class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
@@ -30,6 +30,17 @@
 <script setup>
 import { defineProps } from "vue";
 import MoviesCard from "~/components/MoviesCard.vue";
+import { useFetchAuth } from "~/composable/useFetchAuth";
+
+const resGenre = await useFetchAuth(
+  "https://api.themoviedb.org/3/genre/movie/list?language=en",
+);
+
+const resMovie = await useFetchAuth(
+  "https://api.themoviedb.org/3/discover/movie?with_genres=28",
+);
+
+console.log(resMovie);
 
 defineProps({
   movies: Array,

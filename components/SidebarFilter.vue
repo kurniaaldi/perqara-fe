@@ -1,6 +1,5 @@
 <template>
   <aside class="bg-gray-900 text-gray-200 p-4 rounded-lg w-full">
-    <!-- Sorting -->
     <div class="mb-6">
       <label class="text-base font-semibold block mb-2">Sort Result By</label>
       <select
@@ -13,19 +12,18 @@
       </select>
     </div>
 
-    <!-- Genres -->
     <div>
       <h3 class="text-base font-semibold mb-2">Genres</h3>
       <div
         v-for="genre in genres"
-        :key="genre.value"
+        :key="genre.id"
         class="flex items-center justify-between space-x-2 py-1"
       >
-        <label :for="genre.value" class="text-sm">{{ genre.label }}</label>
+        <label :for="genre.id" class="text-sm">{{ genre.name }}</label>
         <input
           type="checkbox"
-          :id="genre.value"
-          :value="genre.value"
+          :id="genre.id"
+          :value="genre.id"
           v-model="selectedGenres"
           class="form-checkbox h-4 w-4 text-red-500 bg-gray-800 border-gray-600 rounded focus:ring-red-500"
         />
@@ -35,23 +33,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 
 const selectedSort = ref("popularity");
 const selectedGenres = ref(["action"]); // Default selected genre
-const genres = ref([
-  { label: "Action", value: "action" },
-  { label: "Adventure", value: "adventure" },
-  { label: "Animation", value: "animation" },
-  { label: "Comedy", value: "comedy" },
-  { label: "Crime", value: "crime" },
-  { label: "Documentary", value: "documentary" },
-  { label: "Drama", value: "drama" },
-  { label: "Family", value: "family" },
-  { label: "Fantasy", value: "fantasy" },
-  { label: "History", value: "history" },
-  { label: "Horror", value: "horror" },
-]);
+
+defineProps({
+  genres: Array,
+});
 </script>
 
 <style scoped>
