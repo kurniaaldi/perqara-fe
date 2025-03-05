@@ -1,13 +1,19 @@
 <template>
   <NuxtLayout>
-    <div
-      class="container lg:px-32 mobile:px-4 sm:px-4 py-10 relative space-y-10"
-    >
-      <div class="border-t-4 border-[#E74C3C] inline-block pt-4">
-        <p class="text-4xl text-white">Movies</p>
+    <div class="container mx-auto py-10 relative space-y-10">
+      <div
+        class="bg-white bg-opacity-5 h-80 absolute z-10 w-full top-0"
+        :style="{
+          backgroundImage: `linear-gradient(#0000008c, #fff))`,
+        }"
+      ></div>
+      <div class="inline-block pt-4 lg:px-32 mobile:px-4 sm:px-4 z-20">
+        <p class="text-4xl text-white border-t-4 border-[#E74C3C] pt-4">
+          Movies
+        </p>
       </div>
       <div
-        class="grid mobile:grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
+        class="z-20 lg:px-32 mobile:px-4 sm:px-4 grid mobile:grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
       >
         <div>
           <SidebarFilter :genres="resGenre?.genres" />
