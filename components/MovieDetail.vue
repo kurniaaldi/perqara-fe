@@ -39,7 +39,14 @@
           </div>
           <div class="text-xs text-gray-400">
             <p class="font-semibold">PRODUCTION</p>
-            <p class="text-white font-medium">{{ movies.vote_average }}</p>
+            <p class="text-white font-medium">
+              {{
+                movies.production_companies
+                  .slice(0.3)
+                  ?.map((item) => item.name)
+                  .join(", ") || "No Data Available"
+              }}
+            </p>
           </div>
         </div>
       </div>

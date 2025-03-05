@@ -17,6 +17,14 @@
           <CardReview :reviews="resReview.results" />
         </div>
       </div>
+      <div class="w-full h-full px-32 py-14 space-y-4 z-20">
+        <p class="text-red-600">REVIEWS</p>
+        <div
+          class="grid mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full"
+        >
+          <MoviesCard :movies="limitedRecommendation" />
+        </div>
+      </div>
     </div>
   </NuxtLayout>
 </template>
@@ -32,9 +40,15 @@ const resMovie = await useFetchAuth(
   `https://api.themoviedb.org/3/movie/${route.params.slug}?language=en-US`,
 );
 
+const resRecommendationMovie = await useFetchAuth(
+  `https://api.themoviedb.org/3/movie/${route.params.slug}/recommendations?language=en-US`,
+);
+
 const resReview = await useFetchAuth(
   `https://api.themoviedb.org/3/movie/${route.params.slug}/reviews?language=en-US`,
 );
 
-console.log(resReview);
+const limitedRecommendation = computed(
+  () => resRecommendationMovie.results?.slice(0, 5) || [],
+);
 </script>

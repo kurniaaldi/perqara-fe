@@ -29,7 +29,7 @@
 
       <p class="text-white text-lg mt-2">{{ movie.original_title }}</p>
 
-      <NuxtLink :to="`/movie/${movie.id}`">
+      <NuxtLink @click="router.push(`/movie/${movie.id}`)">
         <button
           class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
         >
@@ -42,6 +42,7 @@
 
 <script setup>
 import { defineProps } from "vue";
+const router = useRouter();
 
 const config = useRuntimeConfig();
 
