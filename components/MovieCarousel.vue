@@ -47,7 +47,7 @@
         :key="index"
         @click="currentIndex = index"
         class="w-3 h-3 rounded-full cursor-pointer"
-        :class="currentIndex === index ? 'bg-red-500' : 'bg-gray-500'"
+        :class="currentIndex === index ? 'bg-red-500 w-8' : 'bg-gray-500'"
       ></span>
     </div>
   </div>
