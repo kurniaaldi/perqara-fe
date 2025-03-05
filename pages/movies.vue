@@ -57,7 +57,7 @@ const fetchMovies = async (append = false) => {
   const response = await useFetchAuth(
     `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${
       route.query.with_genres || ""
-    }&page=${page.value}`,
+    }&page=${page.value}&sort_by=${route.query.sort_by || ""}`,
   );
 
   if (append) {

@@ -94,7 +94,7 @@ const props = defineProps({
 
 :deep(.swiper-pagination-bullet-active) {
   background: red;
-  width: 24px;
+  width: 28px;
   height: 10px;
   opacity: 1;
   border-radius: 12px;
