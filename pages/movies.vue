@@ -1,11 +1,13 @@
 <template>
   <NuxtLayout>
-    <div class="container px-32 py-10 relative space-y-10">
+    <div
+      class="container lg:px-32 mobile:px-4 sm:px-4 py-10 relative space-y-10"
+    >
       <div class="border-t-4 border-[#E74C3C] inline-block pt-4">
         <p class="text-4xl text-white">Movies</p>
       </div>
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
+        class="grid mobile:grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
       >
         <div>
           <SidebarFilter :genres="resGenre?.genres" />

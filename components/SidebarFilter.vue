@@ -1,5 +1,7 @@
 <template>
-  <aside class="bg-gray-900 text-gray-200 p-4 rounded-lg w-full">
+  <aside
+    class="bg-gray-900 text-gray-200 p-4 rounded-lg w-full mobile:col-span-4"
+  >
     <div class="mb-6">
       <label class="text-base font-semibold block mb-2">Sort Result By</label>
       <select
