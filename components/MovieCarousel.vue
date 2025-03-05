@@ -28,7 +28,9 @@
           <div class="p-4 bg-gray-900 my-5 w-full text-left overflow-hidden">
             <div class="flex items-center font-semibold text-sm">
               <span class="text-lg">⭐</span>
-              <p class="ml-1 text-white text-lg">{{ movie.vote_average }}</p>
+              <p class="ml-1 text-white text-lg">
+                {{ movie.vote_average.toFixed(1) }}
+              </p>
             </div>
 
             <h2 class="text-white font-bold text-[28px] mt-1">

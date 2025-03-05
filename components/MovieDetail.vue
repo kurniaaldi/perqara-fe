@@ -17,7 +17,9 @@
       <div class="movie-stats flex items-center text-white p-4 w-full">
         <div class="flex items-center space-x-2 pr-6 border-r border-gray-500">
           <span class="text-yellow-400 text-xl">⭐</span>
-          <span class="text-4xl font-bold">{{ movies.vote_average }}</span>
+          <span class="text-4xl font-bold">{{
+            movies.vote_average.toFixed(1)
+          }}</span>
         </div>
 
         <div class="grid grid-cols-5 gap-6 pl-6 text-xs">

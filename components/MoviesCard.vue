@@ -12,7 +12,7 @@
     <div
       class="absolute top-0 right-0 bg-gray-900 bg-opacity-80 text-white text-lg font-semibold px-2.5 py-1.5"
     >
-      {{ movie.vote_average }}
+      {{ movie.vote_average.toFixed(1) }}
     </div>
     <h3 class="text-white font-semibold mt-2 text-sm">
       {{ movie.title }}
@@ -24,7 +24,7 @@
     >
       <div class="flex items-center space-x-1 text-white text-lg font-semibold">
         <span class="text-yellow-400 text-2xl">⭐</span>
-        <span>{{ movie.vote_average }}</span>
+        <span>{{ movie.vote_average.toFixed(1) }}</span>
       </div>
 
       <p class="text-white text-lg mt-2">{{ movie.original_title }}</p>
