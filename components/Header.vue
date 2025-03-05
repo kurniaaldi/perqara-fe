@@ -11,16 +11,46 @@
     <SearchInput />
 
     <nav class="flex items-center space-x-6">
-      <NuxtLink to="/categories" class="hover:text-red-500 transition"
-        >CATEGORIES</NuxtLink
-      >
-      <NuxtLink to="/movies" class="hover:text-red-500 transition"
+      <div class="relative max-w-md" @mouseenter="isDropdownOpen = true">
+        <NuxtLink
+          to="/categories"
+          class="hover:text-red-500 text-sm transition flex items-center gap-4"
+        >
+          <img
+            src="@/assets/icons/view_grid.svg"
+            alt="Movie Icon"
+            class="w-5 h-5"
+          />
+          CATEGORIES
+        </NuxtLink>
+
+        <ul
+          @mouseenter="isDropdownOpen = true"
+          @mouseleave="isDropdownOpen = false"
+          v-if="isDropdownOpen"
+          class="absolute w-full bg-gray-800 mt-2 rounded-lg text-white shadow-lg z-30"
+        >
+          <li
+            v-for="(movie, index) in resGenre?.genres"
+            :key="movie.id"
+            :class="[
+              'px-4 py-2 cursor-pointer hover:bg-blue-600',
+              index === activeIndex ? 'bg-blue-600' : '',
+            ]"
+            @click="selectCategory(movie)"
+            @mouseover="activeIndex = index"
+          >
+            <span class="font-bold">{{ movie.name }}</span>
+          </li>
+        </ul>
+      </div>
+      <NuxtLink to="/movies" class="hover:text-red-500 text-sm transition"
         >MOVIES</NuxtLink
       >
-      <NuxtLink to="/tv-shows" class="hover:text-red-500 transition"
+      <NuxtLink to="/tv-shows" class="hover:text-red-500 text-sm transition"
         >TV SHOWS</NuxtLink
       >
-      <NuxtLink to="/login" class="hover:text-red-500 transition"
+      <NuxtLink to="/login" class="hover:text-red-500 text-sm transition"
         >LOGIN</NuxtLink
       >
     </nav>
@@ -28,13 +58,18 @@
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia";
-import { useSearch } from "~/store/state";
+import { useFetchAuth } from "~/composable/useFetchAuth";
 
-const searchStore = useSearch();
-const { query } = storeToRefs(searchStore);
+const isDropdownOpen = ref(false);
+const activeIndex = ref(-1);
+const router = useRouter();
 
-const search = () => {
-  console.log("Searching for:", query.value);
+const resGenre = await useFetchAuth(
+  "https://api.themoviedb.org/3/genre/movie/list?language=en",
+);
+
+const selectCategory = (genre) => {
+  if (!genre) genre = suggestions.value[activeIndex.value];
+  if (genre) router.push(`/movies?with_genres=${genre.id}`);
 };
 </script>
