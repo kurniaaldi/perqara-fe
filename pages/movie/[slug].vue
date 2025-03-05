@@ -1,11 +1,11 @@
 <template>
   <NuxtLayout>
-    <div class="container relative w-full pt-64">
-      <img
-        :src="imgUrl + resMovie.backdrop_path"
-        :alt="resMovie.title"
-        class="object-cover opacity-20 w-full h-full absolute top-0 left-0 z-0"
-      />
+    <div
+      class="relative w-full pt-64 bg-opacity-20 bg-cover"
+      :style="{
+        backgroundImage: `linear-gradient(#0000008c, #fff),url(${imgUrl}${resMovie.backdrop_path})`,
+      }"
+    >
       <div class="absolute top-[124px]">
         <MovieDetail :movies="resMovie" />
       </div>
@@ -17,13 +17,13 @@
           <CardReview :reviews="resReview.results" />
         </div>
       </div>
-      <div class="w-full h-full px-32 py-14 space-y-4 z-20">
-        <p class="text-red-600">REVIEWS</p>
-        <div
-          class="grid mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full"
-        >
-          <MoviesCard :movies="limitedRecommendation" />
-        </div>
+    </div>
+    <div class="w-full h-full px-32 py-14 space-y-4 z-20">
+      <p class="text-red-600">REVIEWS</p>
+      <div
+        class="grid mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full"
+      >
+        <MoviesCard :movies="limitedRecommendation" />
       </div>
     </div>
   </NuxtLayout>

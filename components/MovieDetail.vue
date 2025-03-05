@@ -42,7 +42,7 @@
             <p class="text-white font-medium">
               {{
                 movies.production_companies
-                  .slice(0.3)
+                  .slice(0.2)
                   ?.map((item) => item.name)
                   .join(", ") || "No Data Available"
               }}
