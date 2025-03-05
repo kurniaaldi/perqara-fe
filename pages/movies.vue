@@ -2,7 +2,7 @@
   <NuxtLayout>
     <div class="container mx-auto py-10 relative space-y-10">
       <div
-        class="bg-white bg-opacity-5 h-80 absolute z-10 w-full top-0"
+        class="bg-white bg-opacity-5 h-80 absolute w-full top-0"
         :style="{
           backgroundImage: `linear-gradient(#0000008c, #fff))`,
         }"
@@ -13,7 +13,7 @@
         </p>
       </div>
       <div
-        class="z-20 lg:px-32 mobile:px-4 sm:px-4 grid mobile:grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
+        class="z-20 relative lg:px-32 mobile:px-4 sm:px-4 grid mobile:grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-7"
       >
         <div>
           <SidebarFilter :genres="resGenre?.genres" />

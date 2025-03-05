@@ -1,6 +1,14 @@
 <template>
-  <div class="container mx-auto xl:px-32 px-4 py-6">
-    <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
+  <div class="container mx-auto my-6 relative">
+    <div
+      class="bg-white bg-opacity-5 h-80 absolute w-full top-0"
+      :style="{
+        backgroundImage: `linear-gradient(#0000008c, #fff))`,
+      }"
+    ></div>
+    <div
+      class="flex flex-col sm:flex-row items-center justify-between my-6 xl:px-32 px-4 z-20 relative"
+    >
       <h2 class="text-xl sm:text-2xl font-bold text-white">Discover Movies</h2>
       <div class="flex space-x-2 mt-3 sm:mt-0">
         <button
@@ -17,7 +25,7 @@
     </div>
 
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6"
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 xl:px-32 px-4"
     >
       <div
         v-for="(movie, index) in movies"
