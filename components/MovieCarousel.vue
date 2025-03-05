@@ -11,28 +11,33 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <div class="overflow-hidden w-[541px] h-[364px] flex">
+        <div
+          @click="router.push(`/movie/${movie.id}`)"
+          class="overflow-hidden w-[541px] h-[364px] flex cursor-pointer"
+        >
           <img
-            src="../assets/images/movie_image.png"
-            alt="movie.title"
+            :src="imgUrl + movie.poster_path"
+            :alt="movies.name"
             class="h-full w-60 object-cover"
           />
 
-          <div class="p-4 bg-gray-900 my-5 w-full text-left">
+          <div class="p-4 bg-gray-900 my-5 w-full text-left overflow-hidden">
             <div class="flex items-center font-semibold text-sm">
               <span class="text-lg">⭐</span>
-              <p class="ml-1 text-white text-lg">7.3</p>
+              <p class="ml-1 text-white text-lg">{{ movie.vote_average }}</p>
             </div>
 
-            <h2 class="text-white font-bold text-[28px] mt-1">movie.title</h2>
-            <p class="text-gray-400 text-base">movie.year • movie.genre</p>
+            <h2 class="text-white font-bold text-[28px] mt-1">
+              {{ movie.name }}
+            </h2>
+            <p class="text-gray-400 text-base">{{ movie.first_air_date }}</p>
 
             <p class="text-gray-300 text-xs mt-2 leading-relaxed">
-              movie.description
+              {{ movie.overview }}
             </p>
           </div>
-        </div></swiper-slide
-      >
+        </div>
+      </swiper-slide>
     </swiper>
     <div
       class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2"
@@ -49,49 +54,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+const config = useRuntimeConfig();
+const router = useRouter();
 
-const movies = ref([
-  {
-    title: "News of the World",
-    rating: "7.2",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "A Texan traveling across the wild West bringing the news of the world to local townspeople...",
-    image: "/images/movie1.jpg",
-  },
-  {
-    title: "Space Sweepers",
-    rating: "7.3",
-    year: "2021",
-    genre: "Sci-Fi",
-    description:
-      "When the crew of a space junk collector ship discovers a humanoid robot known to be a weapon...",
-    image: "/images/movie2.jpg",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "/images/movie3.jpg",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "/images/movie3.jpg",
-  },
-]);
+const imgUrl = config.public.imgUrl;
+
+const props = defineProps({
+  movies: Array,
+});
 </script>
 
 <style scoped>

@@ -29,13 +29,12 @@
 
       <p class="text-white text-lg mt-2">{{ movie.original_title }}</p>
 
-      <NuxtLink @click="router.push(`/movie/${movie.id}`)">
-        <button
-          class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
-        >
-          VIEW
-        </button>
-      </NuxtLink>
+      <button
+        @click="router.push(`/movie/${movie.id}`)"
+        class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
+      >
+        VIEW
+      </button>
     </div>
   </div>
 </template>
