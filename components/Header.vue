@@ -48,15 +48,13 @@
           </li>
         </ul>
       </div>
-      <NuxtLink to="/movies" class="hover:text-red-500 text-sm transition"
-        >MOVIES</NuxtLink
-      >
-      <NuxtLink to="/tv-shows" class="hover:text-red-500 text-sm transition"
-        >TV SHOWS</NuxtLink
-      >
-      <NuxtLink to="/login" class="hover:text-red-500 text-sm transition"
-        >LOGIN</NuxtLink
-      >
+      <div to="/movies" class="hover:text-red-500 text-sm transition">
+        MOVIES
+      </div>
+      <div to="/tv-shows" class="hover:text-red-500 text-sm transition">
+        TV SHOWS
+      </div>
+      <div to="/login" class="hover:text-red-500 text-sm transition">LOGIN</div>
     </div>
   </nav>
 </template>
