@@ -8,34 +8,7 @@
       </NuxtLink>
     </div>
 
-    <div class="relative w-full max-w-md">
-      <input
-        type="text"
-        v-model="query"
-        v-on:keyup.enter="search"
-        placeholder="Find movie"
-        class="w-full bg-gray-800 text-white placeholder-gray-400 pl-10 pr-10 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600"
-      />
-      <div
-        class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-      >
-        <img
-          src="@/assets/icons/finder_icon.svg"
-          alt="Search"
-          class="w-5 h-5"
-        />
-      </div>
-      <button
-        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
-        @click="search"
-      >
-        <img
-          src="@/assets/icons/search_icon.svg"
-          alt="Search"
-          class="w-5 h-5"
-        />
-      </button>
-    </div>
+    <SearchInput />
 
     <nav class="flex items-center space-x-6">
       <NuxtLink to="/categories" class="hover:text-red-500 transition"
