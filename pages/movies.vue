@@ -15,9 +15,11 @@
         <div
           class="col-span-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         >
-          <MoviesCard :movies="resMovie?.results" />
+          <MoviesCard v-if="!isFetching" :movies="movies" />
           <div class="col-span-4 flex items-center justify-center w-full">
             <button
+              @click="loadMore"
+              v-if="hasMore"
               class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
             >
               Load more
@@ -35,25 +37,43 @@ import { useRoute } from "vue-router";
 import { useFetchAuth } from "~/composable/useFetchAuth";
 
 const route = useRoute();
-const resMovie = ref(null);
+const movies = ref([]);
+const page = ref(1);
+const hasMore = ref(true);
+const isFetching = ref(false);
 
 const resGenre = await useFetchAuth(
   "https://api.themoviedb.org/3/genre/movie/list?language=en",
 );
 
-const fetchMovies = async () => {
-  resMovie.value = await useFetchAuth(
+const fetchMovies = async (append = false) => {
+  isFetching.value = true;
+  const response = await useFetchAuth(
     `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${
       route.query.with_genres || ""
-    }`,
+    }&page=${page.value}`,
   );
+
+  if (append) {
+    movies.value = [...movies.value, ...response.results];
+  } else {
+    movies.value = response.results;
+  }
+
+  if (response.page >= response.total_pages) {
+    hasMore.value = false;
+  }
+  isFetching.value = false;
 };
 
-watchEffect(fetchMovies);
-</script>
+const loadMore = async () => {
+  page.value += 1;
+  await fetchMovies(true);
+};
 
-<style scoped>
-.group:hover img {
-  filter: brightness(1.2);
-}
-</style>
+watchEffect(() => {
+  page.value = 1;
+  hasMore.value = true;
+  fetchMovies();
+});
+</script>
