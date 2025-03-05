@@ -29,11 +29,13 @@
 
       <p class="text-white text-lg mt-2">{{ movie.original_title }}</p>
 
-      <button
-        class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
-      >
-        VIEW
-      </button>
+      <NuxtLink :to="`/movie/${movie.id}`">
+        <button
+          class="mt-4 px-6 py-2 bg-red-600 text-white font-bold rounded-full shadow-md hover:bg-red-700 transition duration-300"
+        >
+          VIEW
+        </button>
+      </NuxtLink>
     </div>
   </div>
 </template>

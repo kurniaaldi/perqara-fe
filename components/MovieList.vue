@@ -1,6 +1,5 @@
 <template>
   <div class="container mx-auto xl:px-32 px-4 py-6">
-    <!-- Section Title -->
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-bold text-white">Discover Movies</h2>
       <div class="flex space-x-2">

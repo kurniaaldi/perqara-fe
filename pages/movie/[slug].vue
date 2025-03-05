@@ -2,22 +2,39 @@
   <NuxtLayout>
     <div class="container relative w-full pt-64">
       <img
-        src="~/assets/images/banner.png"
-        alt="MoovieTime Logo"
+        :src="imgUrl + resMovie.backdrop_path"
+        :alt="resMovie.title"
         class="object-cover opacity-20 w-full h-full absolute top-0 left-0 z-0"
       />
       <div class="absolute top-[124px]">
-        <MovieDetail />
+        <MovieDetail :movies="resMovie" />
       </div>
 
       <div class="h-20 bg-black bg-opacity-50 w-full"></div>
-      <div class="bg-white w-full h-full px-32 pb-14 pt-36 space-y-4">
+      <div class="bg-white w-full h-full px-32 pb-14 pt-36 space-y-4 z-20">
         <p class="text-red-600">REVIEWS</p>
         <div class="grid grid-cols-2 gap-4 w-full">
-          <CardReview />
-          <CardReview />
+          <CardReview :reviews="resReview.results" />
         </div>
       </div>
     </div>
   </NuxtLayout>
 </template>
+
+<script setup>
+import { useFetchAuth } from "~/composable/useFetchAuth";
+
+const route = useRoute();
+const config = useRuntimeConfig();
+const imgUrl = config.public.imgUrl;
+
+const resMovie = await useFetchAuth(
+  `https://api.themoviedb.org/3/movie/${route.params.slug}?language=en-US`,
+);
+
+const resReview = await useFetchAuth(
+  `https://api.themoviedb.org/3/movie/${route.params.slug}/reviews?language=en-US`,
+);
+
+console.log(resReview);
+</script>
