@@ -34,19 +34,31 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
+const router = useRouter();
 
-const selectedSort = ref("popularity");
-const selectedGenres = ref(["action"]); // Default selected genre
+const selectedSort = ref("");
+const selectedGenres = ref([]);
 
 defineProps({
   genres: Array,
 });
+
+watch(selectedGenres, (newVal) => {
+  applyFilters();
+});
+
+const applyFilters = () => {
+  const queryParams = {
+    with_genres: selectedGenres.value.join(","),
+  };
+
+  router.push({ path: "/movies", query: queryParams });
+};
 </script>
 
 <style scoped>
-/* Custom styling for better UI */
 .form-checkbox:checked {
-  background-color: #ef4444; /* Red color for selected checkbox */
+  background-color: #ef4444;
   border-color: #ef4444;
 }
 </style>

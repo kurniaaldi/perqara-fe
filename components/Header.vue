@@ -11,7 +11,8 @@
     <div class="relative w-full max-w-md">
       <input
         type="text"
-        v-model="searchQuery"
+        v-model="query"
+        v-on:keyup.enter="search"
         placeholder="Find movie"
         class="w-full bg-gray-800 text-white placeholder-gray-400 pl-10 pr-10 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600"
       />
@@ -53,14 +54,14 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: "Header",
-  //   props: {
-  //     title: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   },
+<script setup>
+import { storeToRefs } from "pinia";
+import { useSearch } from "~/store/state";
+
+const searchStore = useSearch();
+const { query } = storeToRefs(searchStore);
+
+const search = () => {
+  console.log("Searching for:", query.value);
 };
 </script>

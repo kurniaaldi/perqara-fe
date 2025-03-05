@@ -28,71 +28,26 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-import MoviesCard from "~/components/MoviesCard.vue";
+import { watchEffect, ref } from "vue";
+import { useRoute } from "vue-router";
 import { useFetchAuth } from "~/composable/useFetchAuth";
+
+const route = useRoute();
+const resMovie = ref(null);
 
 const resGenre = await useFetchAuth(
   "https://api.themoviedb.org/3/genre/movie/list?language=en",
 );
 
-const resMovie = await useFetchAuth(
-  "https://api.themoviedb.org/3/discover/movie?with_genres=28",
-);
+const fetchMovies = async () => {
+  resMovie.value = await useFetchAuth(
+    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${
+      route.query.with_genres || ""
+    }`,
+  );
+};
 
-console.log(resMovie);
-
-defineProps({
-  movies: Array,
-});
-
-const movies = [
-  {
-    title: "News of the World",
-    rating: "7.2",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "A Texan traveling across the wild West bringing the news of the world to local townspeople...",
-    image: "/images/movie_image.png",
-  },
-  {
-    title: "Space Sweepers",
-    rating: "7.3",
-    year: "2021",
-    genre: "Sci-Fi",
-    description:
-      "When the crew of a space junk collector ship discovers a humanoid robot known to be a weapon...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-  {
-    title: "To All the Boys",
-    rating: "8.1",
-    year: "2021",
-    genre: "Drama",
-    description:
-      "Senior year of high school takes center stage as Lara Jean returns from a trip to Korea...",
-    image: "../assets/images/movie_image.png",
-  },
-];
+watchEffect(fetchMovies);
 </script>
 
 <style scoped>
