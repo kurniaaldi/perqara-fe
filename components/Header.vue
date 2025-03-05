@@ -1,16 +1,20 @@
 <template>
   <nav
-    class="bg-white bg-opacity-5 text-white px-32 py-3 flex items-center justify-between"
+    class="bg-white bg-opacity-5 text-white px-32 mobile:px-2 py-3 flex items-center justify-between"
   >
     <div class="flex items-center space-x-2">
       <NuxtLink to="/" class="hover:text-red-500 transition">
-        <img src="@/assets/images/logo.png" alt="Logo" class="w-28 h-8" />
+        <img
+          src="@/assets/images/logo.png"
+          alt="Logo"
+          class="w-28 h-8 mobile:hidden"
+        />
       </NuxtLink>
     </div>
 
     <SearchInput />
 
-    <nav class="flex items-center space-x-6">
+    <div class="flex items-center space-x-6 mobile:hidden">
       <div class="relative max-w-md" @mouseenter="isDropdownOpen = true">
         <NuxtLink
           to="/categories"
@@ -53,7 +57,7 @@
       <NuxtLink to="/login" class="hover:text-red-500 text-sm transition"
         >LOGIN</NuxtLink
       >
-    </nav>
+    </div>
   </nav>
 </template>
 

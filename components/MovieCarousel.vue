@@ -7,10 +7,10 @@
         delay: 5000,
         disableOnInteraction: false,
       }"
-      :modules="[Autoplay]"
+      :modules="[Autoplay, Pagination]"
       class="mySwiper"
     >
-      <swiper-slide v-for="(movie, index) in movies" :key="index">
+      <swiper-slide v-for="(movie, index) in movies.slice(0, 5)" :key="index">
         <div
           @click="router.push(`/movie/${movie.id}`)"
           class="overflow-hidden w-[541px] h-[364px] flex cursor-pointer"
@@ -43,7 +43,7 @@
       class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2"
     >
       <span
-        v-for="(movie, index) in movies"
+        v-for="(movie, index) in movies.slice(0, 5)"
         :key="index"
         @click="currentIndex = index"
         class="w-3 h-3 rounded-full cursor-pointer"
@@ -56,7 +56,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 const config = useRuntimeConfig();
 const router = useRouter();
 
