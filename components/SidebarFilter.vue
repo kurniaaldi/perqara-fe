@@ -93,8 +93,6 @@ watch(selectedGenres, () => {
 });
 
 const applyFilters = () => {
-  console.log(route.query);
-
   const queryParams = {
     type: route.query.type ?? "movie",
     with_genres: selectedGenres.value.join(","),
