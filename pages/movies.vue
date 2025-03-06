@@ -55,9 +55,11 @@ const resGenre = await useFetchAuth(
 const fetchMovies = async (append = false) => {
   isFetching.value = true;
   const response = await useFetchAuth(
-    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${
-      route.query.with_genres || ""
-    }&page=${page.value}&sort_by=${route.query.sort_by || ""}`,
+    `https://api.themoviedb.org/3/discover/${
+      route.query.type || "movie"
+    }?language=en&with_genres=${route.query.with_genres || ""}&page=${
+      page.value
+    }&sort_by=${route.query.sort_by || ""}`,
   );
 
   if (append) {

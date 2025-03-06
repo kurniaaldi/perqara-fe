@@ -16,8 +16,7 @@
 
     <div class="flex items-center space-x-6 mobile:hidden">
       <div class="relative max-w-md" @mouseenter="isDropdownOpen = true">
-        <NuxtLink
-          to="/categories"
+        <div
           class="hover:text-red-500 text-sm transition flex items-center gap-4"
         >
           <img
@@ -26,7 +25,7 @@
             class="w-5 h-5"
           />
           CATEGORIES
-        </NuxtLink>
+        </div>
 
         <ul
           @mouseenter="isDropdownOpen = true"
@@ -48,12 +47,18 @@
           </li>
         </ul>
       </div>
-      <div to="/movies" class="hover:text-red-500 text-sm transition">
+      <NuxtLink
+        to="/movies?type=movie"
+        class="hover:text-red-500 text-sm transition"
+      >
         MOVIES
-      </div>
-      <div to="/tv-shows" class="hover:text-red-500 text-sm transition">
+      </NuxtLink>
+      <NuxtLink
+        to="/movies?type=tv"
+        class="hover:text-red-500 text-sm transition"
+      >
         TV SHOWS
-      </div>
+      </NuxtLink>
       <div to="/login" class="hover:text-red-500 text-sm transition">LOGIN</div>
     </div>
   </nav>
